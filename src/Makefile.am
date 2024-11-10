@@ -19,7 +19,7 @@ phosphorus_LDADD = \
 	plugin/libphosphorus-plugin.la
 
 phosphorus_LDFLAGS = \
-	-export-dynamic -no-undefined
+	-export-dynamic -no-undefined -lglib-2.0 -lgobject-2.0 -lgtk-3 -lgio-2.0
 
 pkglib_LTLIBRARIES = \
 	libphosphorus.la

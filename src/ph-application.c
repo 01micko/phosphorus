@@ -89,7 +89,7 @@ ph_application_action_quit (UNUSED GSimpleAction *action,
 
 	windows = gtk_application_get_windows (GTK_APPLICATION (user_data));
 
-	g_list_foreach (windows, (GFunc) ph_window_close, NULL);
+	g_list_foreach (windows, (void *) ph_window_close, NULL);
 }
 
 static GActionEntry app_entries[] = {
@@ -233,7 +233,6 @@ ph_application_class_init (PhApplicationClass *ph_application_class)
 							       "Whether to restore the set wallpaper",
 							       FALSE,
 							       G_PARAM_READWRITE |
-							       G_PARAM_PRIVATE |
 							       G_PARAM_CONSTRUCT_ONLY |
 							       G_PARAM_STATIC_STRINGS));
 }
@@ -248,7 +247,7 @@ ph_application_new (gboolean restore_wallpaper)
 {
 	return g_object_new (PH_TYPE_APPLICATION,
 			     "application-id", "org.unia.phosphorus",
-			     "flags", G_APPLICATION_FLAGS_NONE,
+			     "flags", G_APPLICATION_DEFAULT_FLAGS,
 			     "restore-wallpaper", restore_wallpaper,
 			     NULL);
 }
